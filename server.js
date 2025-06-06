@@ -504,8 +504,6 @@ app.get('/api', (_, res) => {
   `);
 });
 
-/* 중요: 루트 경로는 맨 마지막에 정의! 
-   이렇게 하면 / 경로가 public/index.html을 자동으로 서빙합니다 */
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
