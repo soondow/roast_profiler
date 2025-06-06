@@ -3,7 +3,7 @@
 
 # 웹응용기술[001]
 
-# #Node.JS를 통한 porfiler 구현
+# Node.JS를 통한 porfiler 구현
 
 # 20230643 권순도
 
@@ -181,7 +181,7 @@ createCharts(stats);
 - **확장성**: 모듈화된 구조로 새로운 센서 추가 용이
 - **실시간 시각화**: 웹 기반 대시보드를 통한 직관적인 데이터 표시
 
-# 실행 결과
+# 3. 실행 결과
 
 ![image](https://github.com/user-attachments/assets/5efecefc-2a0f-4e6d-b7f4-2cedd5ac42ca)
 
