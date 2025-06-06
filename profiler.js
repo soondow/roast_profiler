@@ -84,11 +84,3 @@ class Profiler {
 }
 
 module.exports = Profiler;
-
-/* 사용 예시
-const p = new Profiler();
-p.add({ ET: 180.5, BT: 150.2, ROR: 3.4 });
-console.log(p.snapshot());    // { ET: {...}, BT: {...}, ROR: {...} }
-p.reset();
-console.log(p.snapshot());    // 모두 count=0, min/max=null/Infinity 형태
-*/  
