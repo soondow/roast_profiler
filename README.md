@@ -1,4 +1,7 @@
-![ui_img_1](https://github.com/user-attachments/assets/04fb1b04-8e62-42a7-a136-0285e324bf39)
+웹응용기술[001]
+Node.JS를 통한 porfiler 구현
+20230643 권순도
+컴퓨터 공학과
 
 ☕ 실시간 커피 로스팅 데이터 분석 시스템(Roast Profiler) 개발 및 구현 ☕
 
