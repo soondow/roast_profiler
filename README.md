@@ -19,7 +19,7 @@ Node.JS를 통한 porfiler 구현
 
      index. html 내부
 
-     uploadBtn.addEventListener('click', async () => {
+                 uploadBtn.addEventListener('click', async () => {
               const file = datafile.files[0];
            const formData = new FormData();
            formData.append('datafile', file);
