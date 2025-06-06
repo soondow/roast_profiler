@@ -181,86 +181,48 @@ createCharts(stats);
 - **확장성**: 모듈화된 구조로 새로운 센서 추가 용이
 - **실시간 시각화**: 웹 기반 대시보드를 통한 직관적인 데이터 표시
 
-# sql
+# 3. sql 테이블 구조
 
-/* ============================================================
- * 0. 데이터베이스 & 기본 스키마
- * ============================================================ */
-CREATE DATABASE roastdb
-  CHARACTER SET utf8mb4
-  COLLATE utf8mb4_general_ci;
-USE roastdb;
+1) raw_data 테이블
 
-/-- 0-1. 센서 원본 데이터 -------------------------------------*/
+로스팅 과정의 원시 센서 데이터를 저장합니다.
+
 CREATE TABLE raw_data (
     id          INT AUTO_INCREMENT PRIMARY KEY,
-    time1       VARCHAR(20) NULL,      -- Artisan CSV Time
-    time2       VARCHAR(20) NULL,      -- 보조 Time
-    ET          DOUBLE      NULL,      -- Environment Temp
-    BT          DOUBLE      NULL,      -- Bean Temp
-    ROR         DOUBLE      NULL,      -- Rate of Rise
-    event       VARCHAR(50) NULL,      -- 1st crack 등
-    uploaded_at DATETIME DEFAULT CURRENT_TIMESTAMP,
-
-    -- 추후 추가 컬럼
-    source      VARCHAR(20) NULL,
-    task_num    INT         NULL,
-    core_num    INT         NULL,
-
-    -- 인덱스
-    INDEX idx_task (task_num),
-    INDEX idx_core (core_num)
+    time1       VARCHAR(20)   NULL,
+    time2       VARCHAR(20)   NULL,
+    ET          DOUBLE        NULL,
+    BT          DOUBLE        NULL,
+    ROR         DOUBLE        NULL,
+    event       VARCHAR(50)   NULL,
+    uploaded_at DATETIME      DEFAULT CURRENT_TIMESTAMP
 );
 
-/-- 0-2. 통계 스냅샷 -----------------------------------------*/
+2) stats_snapshot 테이블
+
+환경 온도(ET), 원두 온도(BT), 온도 상승률(ROR)의 통계 데이터를 저장합니다.
+
 CREATE TABLE stats_snapshot (
     id          INT AUTO_INCREMENT PRIMARY KEY,
-    sensor      ENUM('ET','BT','ROR') NOT NULL,
-    min_val     DOUBLE NOT NULL,
-    max_val     DOUBLE NOT NULL,
-    avg_val     DOUBLE NOT NULL,
-    std_val     DOUBLE NOT NULL,
-    count_val   INT    NOT NULL,
-    snapshot_at DATETIME DEFAULT CURRENT_TIMESTAMP
+    sensor      ENUM('ET','BT','ROR'),
+    min_val     DOUBLE        NOT NULL,
+    max_val     DOUBLE        NOT NULL,
+    avg_val     DOUBLE        NOT NULL,
+    std_val     DOUBLE        NOT NULL,
+    count_val   INT           NOT NULL,
+    snapshot_at DATETIME      DEFAULT CURRENT_TIMESTAMP
 );
 
-/-- 0-3. MQTT 실시간 수집 -------------------------------------*/
+3) mqtt_data 테이블
+
+MQTT로 발행된 실시간 센서 데이터를 저장합니다.
+
 CREATE TABLE mqtt_data (
-    id           INT AUTO_INCREMENT PRIMARY KEY,
-    sensor       ENUM('ET','BT','ROR') NOT NULL,
-    value        DOUBLE                NOT NULL,
-    published_at DATETIME              DEFAULT CURRENT_TIMESTAMP
+    id          INT AUTO_INCREMENT PRIMARY KEY,
+    sensor      ENUM('ET','BT','ROR'),
+    value       DOUBLE       NOT NULL,
+    published_at DATETIME    DEFAULT CURRENT_TIMESTAMP
 );
-
-/* ============================================================
- * 1. 데이터 클렌징 & 초기화
- * ============================================================ */
-
-/-- 1-1. 태스크·코어 번호 기본값 채우기 ----------------------*/
-UPDATE raw_data
-SET    task_num = 1,
-       core_num = 0
-WHERE  task_num IS NULL;
-
-/-- 1-2. 테스트/잡음 데이터 제거 -----------------------------*/
-DELETE FROM raw_data
-WHERE  id >= 19914;   -- 필요 시 기준 ID 조정
-
-/* ============================================================
- * 2. 집계 예시
- * ============================================================ */
-SELECT task_num,
-       core_num,
-       COUNT(*) AS row_cnt,
-       MIN(ET)  AS min_et
-FROM   raw_data
-GROUP  BY task_num, core_num;
-
-/* ============================================================
- * 3. 최종 NULL 레코드 정리
- * ============================================================ */
-DELETE FROM raw_data
-WHERE  task_num IS NULL;
 
 
 # 4. 실행 결과
