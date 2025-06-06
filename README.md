@@ -1,3 +1,6 @@
+![ui_img_1](https://github.com/user-attachments/assets/92c6cf99-a642-49ab-ab98-7883f6bccd30)
+
+
 # 웹응용기술[001]
 
 # #Node.JS를 통한 porfiler 구현
@@ -178,5 +181,20 @@ createCharts(stats);
 - **확장성**: 모듈화된 구조로 새로운 센서 추가 용이
 - **실시간 시각화**: 웹 기반 대시보드를 통한 직관적인 데이터 표시
 
-# 소스 코드 분석
+# 실행 결과
+
+![image](https://github.com/user-attachments/assets/5efecefc-2a0f-4e6d-b7f4-2cedd5ac42ca)
+
+![image](https://github.com/user-attachments/assets/8d7fe877-c12d-475c-b4fd-eb58edd0b309)
+
+![image](https://github.com/user-attachments/assets/4175d687-9b1d-4f56-bddc-cea5805ccadd)
+
+![image](https://github.com/user-attachments/assets/dab00e16-6243-4aea-8b94-430d79206e42)
+
+- 새로고침을 하지 않으면 task&core 그래프가 생성되지 않았습니다. 그래서 새로고침을 한 후에는 밑에 이미지들처럼 task&core 그래프가 생성되었습니다.
+
+![image](https://github.com/user-attachments/assets/93586bc8-e4ec-400d-b813-9028362d9dec)
+
+![image](https://github.com/user-attachments/assets/22902a74-8eb3-415d-b3e7-c0e571c3690b)
+
 
