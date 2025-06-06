@@ -19,11 +19,20 @@ Node.JS를 통한 porfiler 구현
 
      index. html 내부
 
-              uploadBtn.addEventListener('click', async () => {
+     uploadBtn.addEventListener('click', async () => {
            const file = datafile.files[0];
            const formData = new FormData();
            formData.append('datafile', file);
            await fetch('/upload', { method: 'POST', body: formData });
          });
-
-     
+      
+     MQTT 데이터 수신
+   
+        client.on('message', (topic, message) => {
+              const data = JSON.parse(message.toString());
+              if (typeof data === 'object') {
+                ['ET', 'BT', 'ROR'].forEach(sensor => {
+                  if (data[sensor]) profiler.add(sensor, parseFloat(data[sensor]));
+                });
+              }
+            });
