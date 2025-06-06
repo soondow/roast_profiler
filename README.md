@@ -76,7 +76,7 @@ if (BT) profiler.add('BT', parseFloat(BT));
 if (ROR) profiler.add('ROR', parseFloat(ROR));
 ```
 
-### 3. 실시간 통계 처리
+### 3) 실시간 통계 처리
 
 ####  누적 통계 계산
 Welford's 온라인 알고리즘을 사용하여 메모리 효율적인 실시간 통계를 계산합니다.
@@ -112,7 +112,7 @@ module.exports = {
 };
 ```
 
-### 4. 데이터베이스 저장
+### 4) 데이터베이스 저장
 
 ####  업로드 데이터 저장
 파일 업로드를 통해 수집된 데이터를 MySQL 데이터베이스에 저장합니다.
@@ -136,7 +136,7 @@ await connection.execute(
 );
 ```
 
-### 5. 데이터 출력 및 시각화
+### 5) 데이터 출력 및 시각화
 
 ####  RESTful API 제공
 통계 데이터를 JSON 형태로 제공하는 API 엔드포인트를 구현했습니다.
