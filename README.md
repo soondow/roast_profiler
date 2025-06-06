@@ -183,46 +183,7 @@ createCharts(stats);
 
 # 3. sql 테이블 구조
 
-1) raw_data 테이블
-
-로스팅 과정의 원시 센서 데이터를 저장합니다.
-
-CREATE TABLE raw_data (
-    id          INT AUTO_INCREMENT PRIMARY KEY,
-    time1       VARCHAR(20)   NULL,
-    time2       VARCHAR(20)   NULL,
-    ET          DOUBLE        NULL,
-    BT          DOUBLE        NULL,
-    ROR         DOUBLE        NULL,
-    event       VARCHAR(50)   NULL,
-    uploaded_at DATETIME      DEFAULT CURRENT_TIMESTAMP
-);
-
-2) stats_snapshot 테이블
-
-환경 온도(ET), 원두 온도(BT), 온도 상승률(ROR)의 통계 데이터를 저장합니다.
-
-CREATE TABLE stats_snapshot (
-    id          INT AUTO_INCREMENT PRIMARY KEY,
-    sensor      ENUM('ET','BT','ROR'),
-    min_val     DOUBLE        NOT NULL,
-    max_val     DOUBLE        NOT NULL,
-    avg_val     DOUBLE        NOT NULL,
-    std_val     DOUBLE        NOT NULL,
-    count_val   INT           NOT NULL,
-    snapshot_at DATETIME      DEFAULT CURRENT_TIMESTAMP
-);
-
-3) mqtt_data 테이블
-
-MQTT로 발행된 실시간 센서 데이터를 저장합니다.
-
-CREATE TABLE mqtt_data (
-    id          INT AUTO_INCREMENT PRIMARY KEY,
-    sensor      ENUM('ET','BT','ROR'),
-    value       DOUBLE       NOT NULL,
-    published_at DATETIME    DEFAULT CURRENT_TIMESTAMP
-);
+![image](https://github.com/user-attachments/assets/7b626bc0-a8c0-4a28-83f9-6e2597134f45)
 
 
 # 4. 실행 결과
