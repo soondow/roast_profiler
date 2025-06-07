@@ -188,6 +188,8 @@ createCharts(stats);
 
 # 4. 실행 결과
 
+### node sever.js
+
 ![image](https://github.com/user-attachments/assets/5efecefc-2a0f-4e6d-b7f4-2cedd5ac42ca)
 
 ![image](https://github.com/user-attachments/assets/8d7fe877-c12d-475c-b4fd-eb58edd0b309)
